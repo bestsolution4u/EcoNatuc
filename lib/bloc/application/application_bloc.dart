@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:econatuc/bloc/app_bloc.dart';
+import 'package:econatuc/bloc/wifi/bloc.dart';
 import 'package:econatuc/config/application.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +26,8 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
     /// Setup SharedPreferences
     Application.preferences = await SharedPreferences.getInstance();
+
+    AppBloc.wifiBloc.add(WifiCheckEvent());
 
     /// Application Setup Completed
     yield ApplicationSetupState();
