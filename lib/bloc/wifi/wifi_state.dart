@@ -5,8 +5,10 @@ abstract class WifiState {}
 
 class WifiLoadingState extends WifiState {}
 
+class WifiDisabledState extends WifiState {}
+
 class WifiConnectedState extends WifiState {}
 
-class WifiDisconnectedState extends WifiState {}
+class WifiConnectingState extends WifiState {}
 
-class WifiNotFoundState extends WifiState {}
+class WifiNotConnectableState extends WifiState {}

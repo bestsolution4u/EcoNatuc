@@ -1,4 +1,3 @@
-import 'package:econatuc/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,10 +10,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 2000), () {
-      Route route = MaterialPageRoute(builder: (context) => HomeScreen());
-      Navigator.pushReplacement(context, route);
-    });
   }
 
   @override
