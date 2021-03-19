@@ -1,3 +1,4 @@
+import 'package:econatuc/api/api.dart';
 import 'package:econatuc/bloc/wifi/wifi_event.dart';
 import 'package:econatuc/bloc/wifi/wifi_state.dart';
 import 'package:econatuc/config/application.dart';
@@ -24,7 +25,8 @@ class WifiBloc extends Bloc<WifiEvent, WifiState> {
       bool isWifiConnected = await WiFiForIoTPlugin.isConnected();
       String ssidConnected = await WiFiForIoTPlugin.getWiFiAPSSID();
       if (isWifiConnected && ssidConnected == Application.Wifi_SSID) {
-        yield WifiConnectedState();
+        dynamic mqtt = await Api.getMqttName();
+        yield WifiConnectedState(mqtt);
       } else {
         yield WifiConnectingState();
         isWifiConnected = await WiFiForIoTPlugin.connect(Application.Wifi_SSID,
@@ -32,7 +34,8 @@ class WifiBloc extends Bloc<WifiEvent, WifiState> {
             joinOnce: true,
             security: NetworkSecurity.WPA);
         if (isWifiConnected) {
-          yield WifiConnectedState();
+          dynamic mqtt = await Api.getMqttName();
+          yield WifiConnectedState(mqtt);
         } else {
           yield WifiNotConnectableState();
         }
