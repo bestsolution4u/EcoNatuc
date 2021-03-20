@@ -22,23 +22,16 @@ class WifiBloc extends Bloc<WifiEvent, WifiState> {
     if (!isWifiEnabled) {
       yield WifiDisabledState();
     } else {
-      bool isWifiConnected = await WiFiForIoTPlugin.isConnected();
-      String ssidConnected = await WiFiForIoTPlugin.getWiFiAPSSID();
-      if (isWifiConnected && ssidConnected == Application.Wifi_SSID) {
+      yield WifiConnectingState();
+      bool isWifiConnected = await WiFiForIoTPlugin.connect(Application.Wifi_SSID,
+          password: Application.Wifi_PASS,
+          joinOnce: true,
+          security: NetworkSecurity.WPA);
+      if (isWifiConnected) {
         dynamic mqtt = await Api.getMqttName();
         yield WifiConnectedState(mqtt);
       } else {
-        yield WifiConnectingState();
-        isWifiConnected = await WiFiForIoTPlugin.connect(Application.Wifi_SSID,
-            password: Application.Wifi_PASS,
-            joinOnce: true,
-            security: NetworkSecurity.WPA);
-        if (isWifiConnected) {
-          dynamic mqtt = await Api.getMqttName();
-          yield WifiConnectedState(mqtt);
-        } else {
-          yield WifiNotConnectableState();
-        }
+        yield WifiNotConnectableState();
       }
     }
   }
