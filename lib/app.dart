@@ -1,4 +1,5 @@
 import 'package:econatuc/screen/main_screen.dart';
+import 'package:econatuc/screen/wifi_setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +52,8 @@ class _EconatucAppState extends State<EconatucApp> {
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
               if (state is ApplicationSetupState) {
-                return MainScreen();
+                //return MainScreen();
+                return WifiSettingScreen();
               }
               return SplashScreen();
             },

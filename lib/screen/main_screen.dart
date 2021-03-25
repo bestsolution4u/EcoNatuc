@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           } else if (state is WifiDisabledState) {
             return buildWifiDisabledView();
           } else if (state is WifiConnectedState) {
-            return Container();
+            return buildWifiConnectedView(state);
           } else if (state is WifiConnectingState) {
             return buildWifiConnectingView();
           } else {
@@ -55,6 +55,7 @@ class _MainScreenState extends State<MainScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(width: double.infinity, height: 1,),
         Text(
           "Wifi disabled. Please enable wifi and try again.",
           style: TextStyle(color: Colors.black, fontSize: 14),
@@ -93,6 +94,7 @@ class _MainScreenState extends State<MainScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(width: double.infinity, height: 1,),
         Text(
           "Cannot connect to ${Application.Wifi_SSID}.",
           style: TextStyle(color: Colors.black, fontSize: 14),
@@ -118,8 +120,25 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget buildWifiConnectedView(WifiConnectedState state) {
-    return Center(
-      child: Text("Connected to ${Application.Wifi_SSID}. MqttName response: ${state.mqtt.toString()}"),
+    return Column(
+      children: [
+        SizedBox(width: double.infinity, height: 30,),
+        Text("Connected to ${Application.Wifi_SSID}. MqttName response: ${state.mqtt.toString()}"),
+        SizedBox(height: 30,),
+        TextButton(
+            onPressed: () {
+              _wifiBloc.add(WifiCheckEvent());
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Setup Wifi",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ))
+      ],
     );
   }
 }
