@@ -1,5 +1,6 @@
 import 'package:econatuc/bloc/bloc.dart';
 import 'package:econatuc/config/application.dart';
+import 'package:econatuc/screen/wifi_setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -127,7 +128,7 @@ class _MainScreenState extends State<MainScreen> {
         SizedBox(height: 30,),
         TextButton(
             onPressed: () {
-              _wifiBloc.add(WifiCheckEvent());
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WifiSettingScreen(),));
             },
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

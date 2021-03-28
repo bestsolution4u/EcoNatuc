@@ -27,7 +27,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
     /// Setup SharedPreferences
     Application.preferences = await SharedPreferences.getInstance();
 
-    //AppBloc.wifiBloc.add(WifiCheckEvent());
+    AppBloc.wifiBloc.add(WifiCheckEvent());
 
     /// Application Setup Completed
     yield ApplicationSetupState();

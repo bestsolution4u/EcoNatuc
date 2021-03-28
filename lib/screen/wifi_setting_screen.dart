@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:econatuc/config/application.dart';
 import 'package:econatuc/widget/icon_circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -47,7 +48,7 @@ class _WifiSettingScreenState extends State<WifiSettingScreen> {
                 width: double.infinity,
                 height: double.infinity,
                 child: WebView(
-                  initialUrl: 'https://flutter.dev',
+                  initialUrl: Application.wifi_setting_url,
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController webViewController) {
                   },
@@ -57,10 +58,6 @@ class _WifiSettingScreenState extends State<WifiSettingScreen> {
                   javascriptChannels: <JavascriptChannel>{
                   },
                   navigationDelegate: (NavigationRequest request) {
-                    if (request.url.startsWith('https://www.youtube.com/')) {
-                      print('blocking navigation to $request}');
-                      return NavigationDecision.prevent;
-                    }
                     print('allowing navigation to $request');
                     return NavigationDecision.navigate;
                   },

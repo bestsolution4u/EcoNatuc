@@ -52,8 +52,8 @@ class _EconatucAppState extends State<EconatucApp> {
           home: BlocBuilder<ApplicationBloc, ApplicationState>(
             builder: (context, state) {
               if (state is ApplicationSetupState) {
-                //return MainScreen();
-                return WifiSettingScreen();
+                return MainScreen();
+                //return WifiSettingScreen();
               }
               return SplashScreen();
             },
