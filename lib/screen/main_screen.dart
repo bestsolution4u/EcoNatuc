@@ -1,5 +1,7 @@
 import 'package:econatuc/bloc/bloc.dart';
 import 'package:econatuc/config/application.dart';
+import 'package:econatuc/screen/graph_screen.dart';
+import 'package:econatuc/screen/settings_screen.dart';
 import 'package:econatuc/screen/wifi_setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -157,6 +159,58 @@ class _MainScreenState extends State<MainScreen> {
             ),
             child: Text(
               "Setup Wifi",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GraphScreen(duration: 'hours',),));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Hours Graph",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GraphScreen(duration: 'days',),));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Days Graph",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GraphScreen(duration: 'months',),));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Months Graph",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen(),));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Settings",
               style: TextStyle(color: Colors.white, fontSize: 14),
             ))
       ],
