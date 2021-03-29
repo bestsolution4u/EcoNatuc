@@ -90,6 +90,36 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  Widget buildWifiNotConnectibleView2() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(width: double.infinity, height: 1,),
+        Text(
+          "Cannot connect to ${Application.Wifi_SSID}.",
+          style: TextStyle(color: Colors.black, fontSize: 14),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        TextButton(
+            onPressed: () {
+              _wifiBloc.add(WifiCheckEvent());
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Connect",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ))
+      ],
+    );
+  }
+
   Widget buildWifiNotConnectibleView() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -114,6 +144,19 @@ class _MainScreenState extends State<MainScreen> {
             ),
             child: Text(
               "Connect",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            )),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WifiSettingScreen(),));
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+            ),
+            child: Text(
+              "Setup Wifi",
               style: TextStyle(color: Colors.white, fontSize: 14),
             ))
       ],
